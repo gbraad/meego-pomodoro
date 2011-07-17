@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/PomodoroTimer.qml</file>
+        <file>qml/HarmattanMainPage.qml</file>
+        <file>qml/HarmattanMain.qml</file>
+        <file>qml/PomodoroTimer.js</file>
+    </qresource>
+</RCC>
