@@ -21,19 +21,22 @@ var _minutes = 0;
 var _seconds = 0;
 var _sessionCount = 0;
 
+// Toggle timer state and reset variables
 function toggleTimer() {
     // Toggle timer
     timer.activeTimer = (timer.activeTimer == true) ? false : true
 
-    // reset variables
+    // Reset variables
     this._timeSpent = 0;
     this._minutes = 0;
     this._seconds = 0;
     // Leave sessioncount
 
+    // Set display test
     timer.text = "[" + this._sessionCount + "] " + "--:--";
 }
 
+// Trigger timer logic (used by timer interval)
 function triggerTimer() {
     // Increase timer
     this._timeSpent += 1;
@@ -60,5 +63,6 @@ function triggerTimer() {
     else
         this._seconds = this._seconds.toString();
 
+    // Set display text
     timer.text = "[" + this._sessionCount + "] " + this._minutes + ":" + this._seconds;
 }

@@ -18,29 +18,37 @@ import QtQuick 1.0
 import "PomodoroTimer.js" as TimerLogic
 
 Rectangle {
+    // Declare properties for use by logic
     property bool activeTimer: false
     property int heartbeatInterval: 1000;
     property alias text : displayText.text
 
     id: timer
+    color: "black"
+    // Setting size according to parent or fixed (depends on startup)
     width: parent === undefined ? parent.width: 240
     height: parent === undefined ? parent.height: width / 3
-    color: "black"
 
+    // Timer for keeping 1-second interval
     Timer {
         id: heartbeat
         interval: heartbeatInterval
         running: activeTimer
         repeat: true
+        // Trigger logic on heartbeat interval
         onTriggered: { TimerLogic.triggerTimer() }
     }
+    // Text label for timer display
     Text {
         id: displayText
         color: "white"
-        font.pointSize: parent.height / 4
+        // FontSize is based on the orientation and size (dirty hack, magic values)
+        font.pointSize: parent.width > parent.height ? parent.height / 4 : parent.width / 7
+        // Initial state
         text: "[-] --:--"
         anchors.centerIn: parent
     }
+    // Create clickable area to toggle timer
     MouseArea {
         anchors.fill: parent
         onClicked: { TimerLogic.toggleTimer() }
